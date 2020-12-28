@@ -1,0 +1,21 @@
+
+public class PersonDataUpdator {
+
+	private final TaxFactorService taxFactorService;
+
+	public PersonDataUpdator(TaxFactorService taxFactorService) {
+		this.taxFactorService = taxFactorService;
+	}
+
+	public boolean processTaxDataFor(Person person) {
+		try {
+			double meanTaxFactor = taxFactorService.calculateMeanTaxFactor();
+			taxFactorService.updateMeanTaxFactor(person, meanTaxFactor);
+			return true;
+		} catch (ConnectException exception) {
+			System.err.printf("Exception occurred while trying update person data [%s]%n", exception);
+			throw new TaxFactorConnectionException(exception);
+		}
+	}
+
+}

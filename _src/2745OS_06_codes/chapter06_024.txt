@@ -1,0 +1,2 @@
+
+inOrder.verify(taxService, times(2)).transferTaxFor(person);

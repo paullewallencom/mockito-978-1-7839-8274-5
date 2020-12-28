@@ -1,0 +1,26 @@
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Country.class)
+public class TaxFactorCalculatorTest {
+
+    static final double TAX_FACTOR = 10000;
+
+    @Mock Country country;
+
+    @InjectMocks TaxFactorCalculator systemUnderTest;
+
+    @Test
+    public void should_calculate_tax_factor() {
+        // given
+        mockStatic(Country.class);
+        given(Country.fromCountryName(anyString())).willReturn(country);
+        given(country.calculateTaxFactorFor(any(Person.class))).willReturn(TAX_FACTOR);
+
+        // when
+        double taxFactorForPerson = systemUnderTest.calculateTaxFactorFor(new Person());
+
+        // then
+        then(taxFactorForPerson).isEqualTo(TAX_FACTOR);
+    }
+
+}

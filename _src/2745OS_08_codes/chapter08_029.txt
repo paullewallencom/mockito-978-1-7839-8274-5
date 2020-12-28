@@ -1,0 +1,18 @@
+
+public class DeepStubbingNewIdentityCreatorTest {
+	NewIdentityCreator systemUnderTest = new NewIdentityCreator();	
+	@Test
+	public void should_generate_new_address_with_street_number() {
+		// given
+		Person person = mock(Person.class, RETURNS_DEEP_STUBS);
+		given(person.getAddress().getStreetNumber()).willReturn(10);
+		
+		// when
+		int newStreetNumber = systemUnderTest.createNewStreetNumber(person);
+		
+		// then
+		then(newStreetNumber).isNotEqualTo(person.getAddress().getStreetNumber());
+	}
+}
+
+

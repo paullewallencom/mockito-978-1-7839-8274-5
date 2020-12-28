@@ -1,0 +1,28 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class TaxTransfererTest {
+
+    TaxTransferer taxTransferer;
+
+    TaxService taxService;
+
+    @Before
+    public void setup() {
+        Injector injector = Guice.createInjector(new MockModule());
+        taxTransferer = injector.getInstance(TaxTransferer.class);
+        taxService = injector.getInstance(TaxService.class);
+    }
+
+    @Test
+    public void should_transfer_tax_for_person() {
+        // given
+        Person person = new Person();
+
+        // when
+        boolean transferSuccessful = taxTransferer.transferTaxFor(person);
+
+        // then
+        then(transferSuccessful).isTrue();
+        verify(taxService).transferTaxFor(person);
+    }
+}

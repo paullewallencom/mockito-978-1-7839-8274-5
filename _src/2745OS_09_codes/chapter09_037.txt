@@ -1,0 +1,22 @@
+
+@Guice(modules = MockModule.class)
+public class TaxTransfererTestNgTest {
+
+    @Inject TaxTransferer taxTransferer;
+
+    @Inject TaxService taxService;
+
+    @Test
+    public void should_transfer_tax_for_person() {
+        // given
+        Person person = new Person();
+
+        // when
+        boolean transferSuccessful = taxTransferer.transferTaxFor(person);
+
+        // then
+        then(transferSuccessful).isTrue();
+        verify(taxService).transferTaxFor(person);
+    }
+    
+}

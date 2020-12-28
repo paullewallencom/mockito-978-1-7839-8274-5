@@ -1,0 +1,22 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class MeanTaxFactorCalculatorTest {
+
+    @Mock TaxFactorFetcher taxFactorFetcher;
+
+    @InjectMocks MeanTaxFactorCalculator systemUnderTest;
+
+    @Test
+    public void should_throw_exception_when_calculating_mean_tax_factor() {
+        given(taxFactorFetcher.getTaxFactorFor(any(Person.class))).willThrow(new TaxServiceUnavailableException()).willThrow(new InvalidTaxFactorException());
+
+        when(systemUnderTest).calculateMeanTaxFactorFor(new Person());
+
+        thenThrown(TaxServiceUnavailableException.class);
+
+        when(systemUnderTest).calculateMeanTaxFactorFor(new Person());
+
+        thenThrown(InvalidTaxFactorException.class);
+    }
+
+}

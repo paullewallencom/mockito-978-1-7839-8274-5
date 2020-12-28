@@ -1,0 +1,8 @@
+
+public class MockitoConfiguration extends DefaultMockitoConfiguration {
+
+	public Answer<Object> getDefaultAnswer() {
+		return new ReturnsSmartNulls();
+	}
+    
+}

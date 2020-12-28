@@ -1,0 +1,8 @@
+
+public interface TaxService {
+
+    double calculateTaxFactorFor(Person person);
+
+    void updateTaxData(double taxFactor, Person person);
+
+}

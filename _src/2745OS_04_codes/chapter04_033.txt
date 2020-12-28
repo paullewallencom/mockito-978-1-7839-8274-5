@@ -1,0 +1,22 @@
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(TaxFactorFetcher.class)
+public class MeanTaxFactorCalculatorTest {    
+
+    MeanTaxFactorCalculator systemUnderTest = new MeanTaxFactorCalculator();
+
+    @Test
+    public void should_calculate_tax_factor_for_a_player_with_undefined_country() {
+        // given
+	    double expectedMeanTaxFactor = 10;
+        mockStatic(TaxFactorFetcher.class);
+        given(TaxFactorFetcher.getTaxFactorFor(any(Person.class))).willReturn(5.5, 14.5);
+
+        // when
+        double taxFactorForPerson = systemUnderTest.calculateTaxFactorFor(new Person());
+
+        // then
+        then(taxFactorForPerson).isEqualTo(expectedMeanTaxFactor);
+    }
+
+}

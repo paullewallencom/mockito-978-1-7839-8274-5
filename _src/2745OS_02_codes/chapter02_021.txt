@@ -1,0 +1,24 @@
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(TaxService.class)
+public class TaxFactorCalculatorTest {
+
+    static final double TAX_FACTOR = 10000;
+
+    @Mock TaxService taxService;
+
+    @InjectMocks TaxFactorCalculator systemUnderTest;
+
+    @Test
+    public void should_calculate_tax_factor() {
+        // given
+        given(taxService.calculateTaxFactorFor(Mockito.any(Person.class))).willReturn(TAX_FACTOR);
+
+        // when
+        double taxFactorForPerson = systemUnderTest.calculateTaxFactorFor(new Person());
+
+        // then
+        then(taxFactorForPerson).isEqualTo(TAX_FACTOR);
+    }
+    
+}

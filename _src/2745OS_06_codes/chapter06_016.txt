@@ -1,0 +1,18 @@
+
+public class TaxTransferer {
+
+    private final TaxService taxService;
+
+    public TaxTransferer(TaxService taxService) {
+        this.taxService = taxService;
+    }
+
+    public void transferTaxFor(Person person) {
+        if (person == null) {
+            taxService.sendErrorReport();
+            return;
+        }
+        taxService.transferTaxFor(person);
+    }
+
+}

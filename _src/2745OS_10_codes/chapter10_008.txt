@@ -1,0 +1,3 @@
+
+inOrder.verify(mockedCollaborator).execute(objectAtStep1());
+    inOrder.verify(mockedCollaborator).execute(objectAtStep2());

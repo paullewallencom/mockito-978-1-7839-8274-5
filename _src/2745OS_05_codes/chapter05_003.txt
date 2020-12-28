@@ -1,0 +1,23 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class AverageTaxFactorCalculatorTest {
+
+    @Spy TaxFactorFetcher taxFactorFetcher;
+
+    @InjectMocks AverageTaxFactorCalculator systemUnderTest;
+
+    @Test
+    public void should_calculate_avg_tax_factor_for_person_without_a_country() {
+        // given
+	    double storedTaxFactor = 10;
+	    double expectedAvgTaxFactor = 12;
+	    willReturn(storedTaxFactor).given(taxFactorFetcher).getTaxFactorFromDb(any(Person.class));
+
+        // when
+        double avgTaxFactor = systemUnderTest.calculateAvgTaxFactorFor(new Person());
+
+        // then
+        then(avgTaxFactor).isEqualTo(expectedAvgTaxFactor);
+    }
+
+} 

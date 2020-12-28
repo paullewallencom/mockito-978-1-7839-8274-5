@@ -1,0 +1,2 @@
+
+willThrow(ex1, exj2).given(spy).methodToStub()

@@ -1,0 +1,18 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class TaxTransfererTest {
+
+    @Mock TaxService taxService;
+
+    @InjectMocks TaxTransferer systemUnderTest;
+
+
+    @Test
+    public void should_only_send_error_report_if_person_is_null() throws Exception {
+        // when
+        systemUnderTest.transferTaxFor(null);
+
+        // then
+        verify(taxService, only()).sendErrorReport();
+    }
+}

@@ -1,0 +1,32 @@
+
+public class OverMockingNewIdentityCreatorTest {
+	
+	NewIdentityCreator systemUnderTest = new NewIdentityCreator();
+	
+	@Test
+	public void should_generate_new_siblings() {
+		// given
+		Person person = mock(Person.class);
+		List<Person> oldSiblings = mock(List.class);	
+		given(person.getSiblings()).willReturn(oldSiblings);
+		Iterator<Person> personIterator = mock(Iterator.class);
+		given(oldSiblings.iterator()).willReturn(personIterator);
+		given(personIterator.hasNext()).willReturn(true, true, true, false);
+		given(personIterator.next()).willReturn(createPersonWithName("Amy"),
+												createPersonWithName("John"),
+												createPersonWithName("Andrew"));
+
+		// when
+		List<Person> newSiblings = systemUnderTest.createNewSiblings(person);
+		
+		// then
+		then(newSiblings).isNotSameAs(oldSiblings);
+	}
+
+	private Person createPersonWithName(String name) {
+		Person person = new Person();
+		person.setName(name);
+		return person;
+	}
+
+}

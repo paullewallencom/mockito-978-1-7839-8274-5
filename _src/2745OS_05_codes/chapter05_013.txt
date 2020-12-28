@@ -1,0 +1,19 @@
+
+public class TaxFactorFetcher {
+
+    static final double NO_COUNTRY_TAX_FACTOR = 0.3;
+    static final double DEFAULT_TAX_FACTOR = 0.5;
+    static final double DB_TAX_FACTOR = 0.8;
+
+    public double getTaxFactorFor(Person person) {
+        if (person.isCountryDefined()) {
+            return DEFAULT_TAX_FACTOR;
+        }
+        return NO_COUNTRY_TAX_FACTOR;
+    }
+
+    public double getTaxFactorFromDb(Person person) {
+        // simulation of DB access
+        return DB_TAX_FACTOR;
+    }
+}

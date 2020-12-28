@@ -1,0 +1,8 @@
+
+public class MyBddAssertions extends BDDAssertions {
+
+    public static PersonAssert then(Person actual) {
+        return new PersonAssert(actual);
+    }
+
+}

@@ -1,0 +1,24 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class NewPersonGeneratorTest {
+
+    @Mock NewIdentityCreator newIdentityCreator;
+
+    @InjectMocks NewPersonGenerator systemUnderTest;
+
+    @Test
+    public void should_update_data_for_a_single_generated_mature_person() {
+        // given
+        Person robert = new Person("Robert", 25);
+        Person anna = new Person("Anna", 35);
+	    List<Person> oldPeople = asList(robert, anna);
+	    given(newIdentityCreator.createNewAge(argThat(hasAgeGreaterThan(30)))).willReturn(18);       
+
+        // when
+        systemUnderTest.generateNewIdentities(oldPeople);
+
+        // then
+        verify(newIdentityCreator).updateDataFor(numberOfMaturePeople(1));
+    }
+	
+}

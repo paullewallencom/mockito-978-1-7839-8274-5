@@ -1,0 +1,14 @@
+
+public static Matcher<Person> hasAgeGreaterThan(final int age) {
+		return new TypeSafeMatcher<Person>() {
+			@Override
+			protected boolean matchesSafely(Person person) {
+				return person.getAge() > age;
+			}
+
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("Age should be greater than ").appendValue(age);
+			}
+		};
+	}

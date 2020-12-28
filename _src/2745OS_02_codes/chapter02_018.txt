@@ -1,0 +1,2 @@
+
+testCompile 'org.powermock:powermock-module-testng:1.5.2'

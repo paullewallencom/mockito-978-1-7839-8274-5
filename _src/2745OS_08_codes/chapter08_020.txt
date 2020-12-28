@@ -1,0 +1,12 @@
+
+
+public class BadlyDesignedNewPersonGenerator {
+
+    public Person generateNewIdentity(Person person) {
+        String newName = StaticIdentityCreator.createNewName(person);
+        int newAge = StaticIdentityCreator.createNewAge(person);
+        List<Person> newSiblings = StaticIdentityCreator.createNewSiblings(person);
+        return new Person(newName, newAge, newSiblings);
+    }
+
+}

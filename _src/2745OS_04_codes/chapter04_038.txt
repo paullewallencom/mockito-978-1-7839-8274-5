@@ -1,0 +1,43 @@
+
+public class MeanTaxFactorCalculator {
+
+    public double calculateMeanTaxFactorFor(Person person) {
+	    TaxFactorFetcher taxFactorFetcher = new TaxFactorFetcher();
+        double taxFactor = taxFactorFetcher.getTaxFactorFor(person);
+        double anotherTaxFactor = taxFactorFetcher.getTaxFactorFor(person);
+        return (taxFactor + anotherTaxFactor) / 2;
+    }
+
+}
+Let us assume that the TaxFactorFetcher is a class that depending on the person's origin calculates his tax factor in a different way.
+How to do it...
+To use PowerMock with JUnit to stub object instantiation you have to:
+Annotate your test class with the @RunWith(PowerMockRunner.class)
+Provide all the classes that need to be prepared for testing (most likely byte-code manipulated) in the @PrepareForTest annotation (in the case of our scenario it would be @PrepareForTest(MeanTaxFactorCalculator.class) since that class needs to be manipulated in order to stub the execution of TaxFactorFetcher constructor.
+Stub object initialization by calling the PowerMockito.whenNew(ClassToStub.class) method together with additional stubbing configuration (whether the constructor has no arguments or has precisely provided parameters etc.)
+Use Mocktio annotations in a standard way to set up test doubles
+
+Let's take a look at the JUnit test that will verify whether the tax factor is properly calculated (remember that I'm using the BDDMockito.given(...) and AssertJ's BDDAssertions.then(...) static methods – check out Chapter 7 on how to work with AssertJ or how to do the same with Hamcrest's assertThat(...))
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(MeanTaxFactorCalculator.class)
+public class MeanTaxFactorCalculatorTest {
+	
+    @Mock TaxFactorFetcher taxFactorFetcher;
+	
+	MeanTaxFactorCalculator systemUnderTest = new MeanTaxFactorCalculator();
+	
+    @Test
+    public void should_calculate_tax_factor_for_a_player_from_undefined_country() throws Exception {
+        // given
+	    double expectedMeanTaxFactor = 10;
+	    whenNew(TaxFactorFetcher.class).withNoArguments().thenReturn(taxFactorFetcher);
+        given(taxFactorFetcher.getTaxFactorFor(any(Person.class))).willReturn(5.5, 14.5);
+
+        // when
+        double meanTaxFactor = systemUnderTest.calculateMeanTaxFactorFor(new Person());
+
+        // then
+        then(meanTaxFactor).isEqualTo(expectedMeanTaxFactor);
+    }
+	
+}

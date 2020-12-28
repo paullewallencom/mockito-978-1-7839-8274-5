@@ -1,0 +1,18 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class TaxUpdaterTest {
+
+    @Mock TaxService taxService;
+
+    @InjectMocks TaxUpdater systemUnderTest;
+
+    @Test
+    public void should_send_at_least_two_messages_through_the_web_service() {
+        // when
+        systemUnderTest.updateTaxFactorFor(new Person(), new Person());
+
+        // then
+        verify(taxService, atLeast(2)).updateMeanTaxFactor(any(Person.class), anyDouble());
+    }
+
+}

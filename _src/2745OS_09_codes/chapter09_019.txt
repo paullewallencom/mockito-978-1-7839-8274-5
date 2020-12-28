@@ -1,0 +1,3 @@
+
+@ContextConfiguration(locations = {"/chapter9/InjectingWithSpring/application-context.xml",
+                                   "/chapter9/InjectingWithSpring/mock-application-context.xml"})

@@ -1,0 +1,16 @@
+
+@Test
+    public void should_fail_at_updating_second_tax_factor_in_specified_order_due_to_greedy_at_least() {
+        // given
+        Person person = new Person();
+
+        // when
+        systemUnderTest.transferTaxFor(person);
+
+        // then
+        InOrder inOrder = Mockito.inOrder(taxService);
+        inOrder.verify(taxService).updateTaxFactor(eq(person), anyDouble());
+        inOrder.verify(taxService, atLeastOnce()).transferTaxFor(person);
+        inOrder.verify(taxService).updateTaxFactor(eq(person), anyDouble());
+        inOrder.verify(taxService).transferTaxFor(person);
+    }

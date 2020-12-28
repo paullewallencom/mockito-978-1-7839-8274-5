@@ -1,0 +1,15 @@
+
+@Component
+public class TaxTransferer {
+
+    @Autowired private TaxService taxService;
+
+    public boolean transferTaxFor(Person person) {
+        if (person == null) {
+            return false;
+        }
+        taxService.transferTaxFor(person);
+        return true;
+    }
+
+}

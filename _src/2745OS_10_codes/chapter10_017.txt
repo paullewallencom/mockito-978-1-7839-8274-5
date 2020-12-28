@@ -1,0 +1,5 @@
+
+testCompile "org.jmock:jmock-junit4:2.6.0"
+testCompile "org.jmock:jmock-legacy:2.6.0"
+testCompile "org.jmock:jmock:2.6.0"  
+

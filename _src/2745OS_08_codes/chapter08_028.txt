@@ -1,0 +1,33 @@
+
+public class NewIdentityCreatorTest {
+
+	NewIdentityCreator systemUnderTest = new NewIdentityCreator();
+
+	@Test
+	public void should_generate_new_siblings() {
+		// given
+		List<Person> oldSiblings = createSiblings();
+		Person person = createPersonWithStreetNumberAndSiblingsAndName(oldSiblings);
+
+		// when
+		List<Person> siblings = systemUnderTest.createNewSiblings(person);
+
+		// then
+		then(siblings).doesNotContainAnyElementsOf(oldSiblings);
+	}
+
+	private Person createPersonWithStreetNumberAndSiblingsAndName(List<Person> siblings) {
+		return person().streetNumber(10)
+				.siblings(siblings)
+				.name("Robert")					   
+				.build();
+	}
+
+	private List<Person> createSiblings() {
+		return asList(
+				person().name("Amy").build(),
+				person().name("John").build(),
+				person().name("Andrew").build()
+		);
+	}
+}

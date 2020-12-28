@@ -1,0 +1,24 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class MeanTaxFactorCalculatorTest {
+
+    @Mock TaxFactorFetcher taxFactorFetcher;
+
+    @InjectMocks MeanTaxFactorCalculator systemUnderTest;
+
+    @Test
+    public void should_calculate_mean_tax_factor_for_two_different_tax_factors() {
+        // given
+        double taxFactor = 10;
+        double anotherTaxFactor = 20;
+        double expectedMeanTaxFactor = (taxFactor + anotherTaxFactor) / 2;
+        given(taxFactorFetcher.getTaxFactorFor(any(Person.class))).willReturn(taxFactor).willReturn(anotherTaxFactor);
+
+        // when
+        double meanTaxFactor = systemUnderTest.calculateMeanTaxFactorFor(new Person());
+
+        // then
+        then(meanTaxFactor).isEqualTo(expectedMeanTaxFactor);
+    }
+
+}

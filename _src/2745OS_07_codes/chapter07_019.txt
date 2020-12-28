@@ -1,0 +1,5 @@
+
+•	public static BigDecimalAssert assertThat(BigDecimal actual);
+•	public static BooleanAssert assertThat(boolean actual);
+•	public static FileAssert assertThat(File actual);
+•	public static <T> ObjectAssert<T> assertThat(T actual);

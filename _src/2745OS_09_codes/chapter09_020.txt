@@ -1,0 +1,2 @@
+
+INFO: Overriding bean definition for bean 'taxService': replacing [Generic bean: class [com.blogspot.toomuchcoding.book.chapter9.InjectingWithSpring.TaxService]; … cropped for readability purposes... defined in class path resource [chapter9/InjectingWithSpring/application-context.xml]] with [Generic bean: class [org.mockito.Mockito]; … cropped for redability purposes... factoryMethodName=mock; defined in class path resource [chapter9/InjectingWithSpring/mock-application-context.xml]]	

@@ -1,0 +1,2 @@
+
+exists(), isDirectory(), isRelative(), hasParent(...), hasExtension(...)

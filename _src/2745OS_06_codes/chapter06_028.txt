@@ -1,0 +1,7 @@
+
+1)	taxService.updateTaxFactor(person, calculateTaxFactor(1));
+2)	taxService.transferTaxFor(person);
+3)	taxService.transferTaxFor(person);
+4)	taxService.updateTaxFactor(person, calculateTaxFactor(2));
+5)	taxService.transferTaxFor(person);
+

@@ -1,0 +1,8 @@
+
+org.mockito.internal.exceptions.ExceptionIncludingMockitoWarnings: contains both: actual test failure *and* Mockito warnings.
+This stubbing was never used   -> at ...MeanTaxFactorCalculatorTest.should_calculate_mean_tax_factor(MeanTaxFactorCalculatorTest.java:30)
+
+ *** The actual failure is because of: ***
+
+Expected :10.0
+Actual   :0.0

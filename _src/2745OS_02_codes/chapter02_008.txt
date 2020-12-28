@@ -1,0 +1,4 @@
+
+public static <T> T mock(Class<T> classToMock, Answer defaultAnswer) {
+        return mock(classToMock, withSettings().defaultAnswer(defaultAnswer));
+    }

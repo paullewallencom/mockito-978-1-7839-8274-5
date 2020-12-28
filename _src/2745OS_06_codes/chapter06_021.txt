@@ -1,0 +1,2 @@
+
+InOrder inOrder = Mockito.inOrder(mock1, mock2, … , mockn);

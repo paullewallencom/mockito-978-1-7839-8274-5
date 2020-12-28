@@ -1,0 +1,2 @@
+
+given(taxFactorFetcher.getTaxFactorFor(any(Person.class))).willThrow(new TaxServiceUnavailableException(), new InvalidTaxFactorException());

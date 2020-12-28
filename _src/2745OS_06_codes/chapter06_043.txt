@@ -1,0 +1,32 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class PersonProcessorTest {
+
+	@Mock PersonSaver personSaver;
+	
+	@InjectMocks PersonProcessor systemUnderTest;
+	
+	@Test
+	public void should_process_person_within_specified_time() {
+		// when
+		systemUnderTest.process(new Person());
+		
+		// then
+		await().atMost(1, SECONDS).until(personIsSaved());		
+	}
+
+	private Callable<Boolean> personIsSaved() {
+		return new Callable<Boolean>() {
+			@Override
+			public Boolean call() throws Exception {
+				try {
+					verify(personSaver).savePerson(any(Person.class));
+					return true;
+				} catch (AssertionError assertionError) { 
+					return false;
+				}
+			}
+		};
+	}
+
+}

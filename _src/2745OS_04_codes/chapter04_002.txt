@@ -1,0 +1,28 @@
+
+/* match the method for any person and for the city of Warsaw */
+given(irsDataFetcher.isIrsApplicable(any(Person.class), eq("Warsaw"))).willReturn(true);
+
+/* match the method for any person and for the city starting with 'W' */
+given(irsDataFetcher.isIrsApplicable(any(Person.class), startsWith("W"))).willReturn(true);
+
+/* match the method for any Person and for the city ending with 'w' */
+given(irsDataFetcher.isIrsApplicable(any(Person.class), endsWith("w"))).willReturn(true);
+
+/* match the method for any person and for any city */
+given(irsDataFetcher.isIrsApplicable(any(Person.class), anyString())).willReturn(true);
+
+/* match the method for a person that reflecion equals another person and for any city */
+given(irsDataFetcher.isIrsApplicable(refEq(new Person()), anyString())).willReturn(true);
+
+/* match the method for the same reference of the person and for any city */
+given(irsDataFetcher.isIrsApplicable(same(person), anyString())).willReturn(true);
+
+/* match the method for a person called Lewandowski and for any city (using Hamcrest matcher) */
+given(irsDataFetcher.isIrsApplicable(argThat(new ArgumentMatcher<Person>() {
+
+            @Override
+            public boolean matches(Object argument) {
+                return "Lewandowski".equalsIgnoreCase(((Person)argument).getName());
+            }
+
+        }), anyString())).willReturn(true);

@@ -1,0 +1,6 @@
+
+java.lang.NoClassDefFoundError: org/mockito/internal/MockitoInvocationHandler
+	at java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.lang.Class.privateGetDeclaredConstructors(Class.java:2493)
+	at java.lang.Class.getDeclaredConstructors(Class.java:1901)
+...

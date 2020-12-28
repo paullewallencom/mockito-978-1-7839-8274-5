@@ -1,0 +1,23 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class TaxTransfererTest {
+
+    @Mock TaxService taxService;
+
+    @InjectMocks TaxTransferer systemUnderTest;
+
+		@Test
+	public void should_verify_that_ignoring_stubbed_method_there_was_a_single_interaction_with_mock() {
+			// given
+			Person person = new Person();
+			given(taxService.sendStatisticsReport()).willReturn(true);
+	
+			// when
+			boolean success = systemUnderTest.transferTaxFor(person);
+	
+			// then
+			verify(taxService).transferTaxFor(person);
+			verifyNoMoreInteractions(ignoreStubs(taxService));
+			then(success).isTrue();
+		}
+   }

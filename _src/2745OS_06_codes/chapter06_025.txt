@@ -1,0 +1,4 @@
+
+inOrder.verify(taxService, times(2)).transferTaxFor(person);
+        inOrder.verify(taxService).updateTaxFactor(eq(person), anyDouble());
+        inOrder.verify(taxService).transferTaxFor(person);

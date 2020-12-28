@@ -1,0 +1,18 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class PersonDataUpdatorTest {
+
+	@Spy TaxFactorService taxFactorService;
+
+    @InjectMocks PersonDataUpdator systemUnderTest;
+
+    @Test
+    public void should_fail_to_update_tax_factor_for_person_due_to_connection_issues() throws ConnectException {        
+        willThrow(ConnectException.class).given(taxFactorService).updateMeanTaxFactor(any(Person.class), anyDouble());
+
+	    when(systemUnderTest).processTaxDataFor(new Person());
+	    	    
+	    then(caughtException()).hasCauseInstanceOf(ConnectException.class);
+    }
+	
+}

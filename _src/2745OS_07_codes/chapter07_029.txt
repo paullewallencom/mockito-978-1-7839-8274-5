@@ -1,0 +1,21 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class TaxTransfererTest {
+
+    @Mock TaxService taxService;
+
+    @InjectMocks TaxTransferer systemUnderTest;
+
+    @Captor ArgumentCaptor<Person> personCaptor;
+
+    @Test
+    public void should_change_persons_country_before_sending_data_through_ws() {
+        // when
+        systemUnderTest.transferTaxFor( new Person("Lewandowski", "UK"));
+
+        // then
+        verify(taxService).transferTaxFor(personCaptor.capture());
+	    then(personCaptor.getValue()).hasName("Lewandowski").hasCountry("Poland");
+    }
+	
+}

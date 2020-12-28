@@ -1,0 +1,15 @@
+
+public class PersonSaver {
+
+    public void validatePerson(Person person) {
+	      if (!person.isCountryDefined()) {
+  		    System.out.printf("Warning person [%s] has undefined country%n", person.getName());
+	      }
+    }
+
+  	public final void savePerson(Person person) {
+		  // simulating web service call
+  		System.out.println("Storing person in the db");
+    }
+
+}

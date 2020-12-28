@@ -1,0 +1,31 @@
+
+public class TaxTransfererTestNgTest {
+
+    @Mock TaxService taxService;
+
+    TaxTransferer systemUnderTest;
+
+    @BeforeMethod
+    public void setup() {
+        EasyMockSupport.injectMocks(this);
+	    systemUnderTest = new TaxTransferer(taxService);
+    }
+
+    @Test
+    public void should_return_false_when_tax_was_not_transfered_and_connection_to_irs_was_refused() {
+        // expect
+	    Person person = new Person();
+	    expect(taxService.hasAlreadyTransferredTax(anyObject(Person.class))).andReturn(false);
+	    taxService.transferTaxFor(same(person));
+	    expectLastCall().andStubThrow(new RuntimeException("Connection refused"));
+	    replay(taxService);
+
+	    // act
+	    boolean transferSuccessful = systemUnderTest.transferTaxFor(person);
+
+	    // assert
+	    then(transferSuccessful).isFalse();
+	    verify(taxService);
+    }
+
+}

@@ -1,0 +1,22 @@
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(PersonSaver.class)
+public class PersonProcessorTest {
+
+    PersonSaver personSaver = PowerMockito.spy(new PersonSaver());
+
+    PersonProcessor systemUnderTest = new PersonProcessor(personSaver);
+
+    @Test
+    public void should_successfully_proces_person_with_defined_country() {
+        // given       
+        willDoNothing().given(personSaver).savePerson(any(Person.class));
+
+        // when
+        boolean result = systemUnderTest.process(new Person("POLAND"));
+
+        // then
+        then(result).isTrue();
+    }
+	
+}

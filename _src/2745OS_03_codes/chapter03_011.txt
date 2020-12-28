@@ -1,0 +1,3 @@
+
+@Spy TaxService taxService = new TaxService("Some value”);
+

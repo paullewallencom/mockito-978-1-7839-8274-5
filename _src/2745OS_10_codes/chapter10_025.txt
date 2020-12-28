@@ -1,0 +1,37 @@
+
+class TaxTransferrerSpec extends Specification {
+
+    TaxService taxService = Mock()
+
+    TaxTransferer systemUnderTest = new TaxTransferer(taxService);
+
+    def ‘should return false when tax was not transfered and connection to irs was refused’() {
+        given:
+            Person person = new Person()
+        when:
+            boolean transferSuccessful = systemUnderTest.transferTaxFor(person)
+        then:
+            !transferSuccessful
+            1 * taxService.hasAlreadyTransferredTax(person) >> false
+            1 * taxService.transferTaxFor(person) >> { throw new RuntimeException("Connection refused") }
+
+    }
+
+    @Unroll
+    def "should return [#transferSuccessful] when tax wasn't already transferred and connection to irs was refused [#throwsException]"() {
+        given:
+            Person person = new Person()
+        when:
+            boolean transferSuccessfulResult = systemUnderTest.transferTaxFor(person)
+        then:
+            transferSuccessfulResult == transferSuccessful
+            1 * taxService.hasAlreadyTransferredTax(person) >> false
+            1 * taxService.transferTaxFor(person) >> { if(throwsException) { throw new RuntimeException("Connection refused") } }
+        where:
+            throwsException || transferSuccessful
+            true            || false
+            false           || true
+
+    }
+
+}

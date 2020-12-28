@@ -1,0 +1,2 @@
+
+INFO: Overriding bean definition for bean 'taxService': replacing [… cropped for redability purposes...; defined in class com.blogspot.toomuchcoding.book.chapter9.InjectingWithSpring.TaxConfiguration] with [… cropped for redability purposes...; defined in class com.blogspot.toomuchcoding.book.chapter9.InjectingWithSpring.MockTaxConfiguration]

@@ -1,0 +1,29 @@
+
+public class PersonBuilder {
+	private String name;
+	private Address address;
+	private List<Person> siblings;
+
+	public PersonBuilder name(String name) {
+		this.name = name;
+		return this;
+	}
+
+	public PersonBuilder address(Address address) {…}
+	
+	public PersonBuilder streetNumber(int streetNumber) {…}
+
+	public PersonBuilder siblings(List<Person> siblings) {…	}
+
+	public Person build() {
+		Person person = new Person();
+		person.setName(name);
+		person.setAddress(address);
+		person.setSiblings(siblings);
+		return person;
+	}
+	
+	public static PersonBuilder person() {
+		return new PersonBuilder();
+	} 
+} 

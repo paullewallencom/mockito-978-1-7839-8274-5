@@ -1,0 +1,15 @@
+
+    @Test
+    public void should_calculate_sum_of_factors() {
+        // given
+        TaxFactorCalculator systemUnderTest = new TaxFactorCalculator();
+        double taxFactorOne = 1;
+        double taxFactorTwo = 2;
+        double expectedSum = 3; 
+        
+        // when
+        double sumOfFactors = systemUnderTest.calculateSum(taxFactorOne, taxFactorTwo);
+
+        // then
+        then(sumOfFactors).isEqualTo(expectedSum);
+    }

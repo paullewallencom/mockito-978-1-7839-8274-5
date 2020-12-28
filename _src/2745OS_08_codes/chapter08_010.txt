@@ -1,0 +1,22 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class VisitLoggerTest {
+
+    @Mock TimeSource timeSource;
+
+    @InjectMocks RefactoredVisitLogger refactoredVisitLogger;
+
+    @Test
+    public void should_return_users_logging_time() {
+        // given
+        Date currentDate = new Date();
+        given(timeSource.getDate()).willReturn(currentDate);
+
+        // when
+        Date dateOfLogging = refactoredVisitLogger.logUsersVisit();
+
+        // then
+        then(dateOfLogging).isSameAs(currentDate);
+    }
+
+}

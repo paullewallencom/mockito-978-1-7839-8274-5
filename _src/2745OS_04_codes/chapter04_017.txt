@@ -1,0 +1,16 @@
+
+public class MeanTaxFactorCalculator {
+
+    private final TaxFactorFetcher taxFactorFetcher;
+
+    public MeanTaxFactorCalculator(TaxFactorFetcher taxFactorFetcher) {
+        this.taxFactorFetcher = taxFactorFetcher;
+    }
+
+    public double calculateMeanTaxFactorFor(Person person) {
+        double taxFactor = taxFactorFetcher.getTaxFactorFor(person);
+        double anotherTaxFactor = taxFactorFetcher.getTaxFactorFor(person);
+        return (taxFactor + anotherTaxFactor) / 2;
+    }
+
+}

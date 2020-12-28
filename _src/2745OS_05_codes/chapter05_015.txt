@@ -1,0 +1,2 @@
+
+willAnswer(answer1).willAnswer(answer2).given(spy).methodToStub()

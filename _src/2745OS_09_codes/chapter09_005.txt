@@ -1,0 +1,10 @@
+
+@Configuration
+class MockTaxConfiguration {
+
+    @Bean
+    public TaxService taxService() {
+        return Mockito.mock(TaxService.class);
+    }
+
+} 

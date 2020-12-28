@@ -1,0 +1,17 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class TaxTransfererTest {
+
+    @Mock TaxService taxService;
+
+    @InjectMocks TaxTransferer systemUnderTest;
+
+    @Test
+    public void should_not_interact_with_web_service_in_any_way_if_person_is_null() {
+        // when
+        systemUnderTest.transferTaxFor(null);
+
+        // then
+        verifyZeroInteractions(taxService);
+    }
+}

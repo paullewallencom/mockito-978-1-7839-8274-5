@@ -1,0 +1,18 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class TaxFactorInformationProviderTest {
+
+    @Mock(answer = Answers.RETURNS_SMART_NULLS) TaxService taxService;
+
+    @InjectMocks TaxFactorInformationProvider systemUnderTest;
+
+    @Test
+    public void should_calculate_mean_tax_factor() {
+        // when
+        String parsedIrsAddress = systemUnderTest.formatIrsAddress(new Person());
+
+        // then
+        then(parsedIrsAddress).isEqualTo("IRS:[]");
+    }
+
+} 

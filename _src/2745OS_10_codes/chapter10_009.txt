@@ -1,0 +1,4 @@
+
+    mockedCollaborator.execute(mutate(object));
+    mockedCollaborator.execute(mutate(object));
+    replay(mockedCollaborator);

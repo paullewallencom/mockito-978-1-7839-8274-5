@@ -1,0 +1,34 @@
+
+@PrepareForTest(PersonSaver.class)
+public class PersonProcessorTestNgTest extends PowerMockTestCase {
+
+    PersonSaver personSaver;
+	
+    PersonProcessor systemUnderTest;
+	
+	@BeforeMethod
+	public void setup() {
+		personSaver = PowerMockito.spy(new PersonSaver());
+		systemUnderTest = new PersonProcessor(personSaver);
+	}
+
+    @Test
+    public void should_successfully_proces_person_with_defined_country() {
+        // given       
+        willDoNothing().given(personSaver).savePerson(any(Person.class));
+
+        // when
+        boolean result = systemUnderTest.process(new Person("POLAND"));
+
+        // then
+        then(result).isTrue();
+    }
+
+
+	@ObjectFactory
+	public IObjectFactory getObjectFactory() {
+		return new PowerMockObjectFactory();
+	}
+	
+}
+

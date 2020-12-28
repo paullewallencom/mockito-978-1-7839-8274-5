@@ -1,0 +1,2 @@
+
+This stubbing was never used   -> at ....MeanTaxFactorCalculatorTest.should_calculate_mean_tax_factor(MeanTaxFactorCalculatorTest.java:25)

@@ -1,0 +1,2 @@
+
+testCompile('org.assertj:assertj-core:1.6.0')

@@ -1,0 +1,24 @@
+
+@Configuration
+class MockTaxConfiguration {
+
+    @Bean
+    public BeanPostProcessor taxServiceBeanPostProcessor() {
+        return new BeanPostProcessor(){
+
+            @Override
+            public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+                if(bean instanceof TaxService) {
+                    return Mockito.mock(TaxService.class);
+                }
+                return bean;
+            }
+
+            @Override
+            public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+                return bean;
+            }
+        };
+    }
+
+}

@@ -1,0 +1,21 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class PersonProcessorTest {
+
+    @Mock PersonSaver personSaver;
+
+    @InjectMocks PersonProcessor systemUnderTest;
+
+    @Test
+    public void should_fail_to_save_person_data_when_exception_occurs() {
+        // given
+        willThrow(FailedToSavedPersonDataException.class).given(personSaver).savePerson(any(Person.class));
+
+        // when
+        boolean updateSuccessful = systemUnderTest.process(new Person());
+
+        // then
+        then(updateSuccessful).isFalse();
+    }
+
+}

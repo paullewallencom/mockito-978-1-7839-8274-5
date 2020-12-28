@@ -1,0 +1,20 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class MeanTaxFactorCalculatorTest {
+
+    static final double UNUSED_VALUE = 10;
+
+    @Test
+    public void should_calculate_mean_tax_factor() {
+        // given
+        TaxService taxService = given(Mockito.mock(TaxService.class).performAdditionalCalculation()).willReturn(UNUSED_VALUE).getMock();
+        MeanTaxFactorCalculator systemUnderTest = new MeanTaxFactorCalculator(taxService);
+
+        // when
+        double meanTaxFactor = systemUnderTest.calculateMeanTaxFactorFor(new Person());
+
+        // then
+        then(meanTaxFactor).isEqualTo(UNUSED_VALUE);
+    }
+
+}

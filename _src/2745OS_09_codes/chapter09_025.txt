@@ -1,0 +1,15 @@
+
+@Configuration
+class TaxConfiguration {
+
+    @Bean
+    public TaxService taxService() {
+        return new TaxService();
+    }
+
+    @Bean
+    public TaxTransferer taxTransferer(TaxService taxService) {
+        return new TaxTransferer(taxService);
+    }
+
+}

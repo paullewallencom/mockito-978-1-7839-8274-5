@@ -1,0 +1,18 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class PersonProcessorTest {
+
+	@Mock PersonSaver personSaver;
+	
+	@InjectMocks PersonProcessor systemUnderTest;
+	
+	@Test
+	public void should_process_person_within_specified_time() {
+		// when
+		systemUnderTest.process(new Person());
+		
+		// then
+		verify(personSaver, timeout(1000)).savePerson(any(Person.class));
+	}
+		
+}

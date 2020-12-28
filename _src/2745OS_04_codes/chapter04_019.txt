@@ -1,0 +1,2 @@
+
+given(...).willAnswer(answer1).willAnswer(answer2)...willAnswer(answer3)

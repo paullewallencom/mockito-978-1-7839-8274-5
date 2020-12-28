@@ -1,0 +1,23 @@
+
+public class PersonDataUpdater {
+
+	private final UpdatePersonJsonBuilder updatePersonJsonBuilder;
+
+	public PersonDataUpdater(UpdatePersonJsonBuilder updatePersonJsonBuilder) {
+		this.updatePersonJsonBuilder = updatePersonJsonBuilder;
+	}
+
+	public void updatePersonData(Person person) {
+        String json = updatePersonJsonBuilder.build(person);
+        System.out.printf("Calling web service to update new identity for person [%s] with JSON String [%s]%n", person.getName(), json);
+    }
+
+}
+And the UpdatePersonJsonBuilder class looks like this:
+class UpdatePersonJsonBuilder {
+
+	public String build(Person person) {
+		return "{\"name\":\"" + person.getName() + "\",\"age\":\"" + person.getAge() + "\"}";
+	}
+	
+}

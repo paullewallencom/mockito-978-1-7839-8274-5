@@ -1,0 +1,4 @@
+
+InOrder inOrder = Mockito.inOrder(taxService);
+inOrder.verify(taxService).transferTaxFor(person);
+inOrder.verify(taxService).transferTaxFor(person);

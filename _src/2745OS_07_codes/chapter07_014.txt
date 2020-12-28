@@ -1,0 +1,29 @@
+
+		public static List<Person> numberOfMaturePeople(int count) {
+		return argThat(containsNumberOfMaturePeople(count));
+	}
+	
+	static Matcher<List<Person>> containsNumberOfMaturePeople(final int count) {
+		return new TypeSafeMatcher<List<Person>>() {
+			@Override
+			protected boolean matchesSafely(List<Person> item) {
+				return count == countMaturePeople(item);
+			}
+
+			@Override
+			public void describeTo(Description description) { 
+				description.appendText("Number of mature people should be equal to ")
+						   .appendValue(count);
+			}
+			
+			private int countMaturePeople(List<Person> people) {
+				int maturePeopleCount = 0;
+				for(Person person : people) {
+					if (person.getAge() >= 18) {
+						maturePeopleCount = maturePeopleCount + 1;
+					}
+				}
+				return maturePeopleCount;
+			}
+		};				
+	}

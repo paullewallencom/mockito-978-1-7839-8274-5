@@ -1,0 +1,24 @@
+
+public class TaxUpdator {
+
+    public static final int TAX_FACTOR = 100;
+
+    private final TaxService taxService;
+
+    public TaxUpdator(TaxService taxService) {
+        this.taxService = taxService;
+    }
+
+    public void transferTaxFor(Person person) {
+        taxService.updateTaxFactor(person, calculateTaxFactor(1));
+        taxService.transferTaxFor(person);
+        taxService.transferTaxFor(person);
+        taxService.updateTaxFactor(person, calculateTaxFactor(2));
+        taxService.transferTaxFor(person);
+    }
+
+    private double calculateTaxFactor(double ratio) {
+        return TAX_FACTOR * ratio;
+    }
+
+}

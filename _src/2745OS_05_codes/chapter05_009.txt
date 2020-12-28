@@ -1,0 +1,18 @@
+
+@RunWith(MockitoJUnitRunner.class)
+public class AverageTaxFactorCalculatorTest {
+
+	@Spy TaxFactorFetcher taxFactorFetcher;
+	
+	@InjectMocks AverageTaxFactorCalculator systemUnderTest;
+
+    @Test
+    public void should_throw_exception_while_trying_to_calculate_mean_tax_factor() {
+        willThrow(new TaxFactorFetchException()).given(taxFactorFetcher).getTaxFactorFor(any(Person.class));
+        
+	    when(systemUnderTest).calculateAvgTaxFactorFor(new Person());
+        
+        thenThrown(TaxFactorFetchException.class);	    
+    }
+
+}

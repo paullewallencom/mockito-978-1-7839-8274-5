@@ -1,0 +1,2 @@
+
+INFO: Skipping bean definition for [BeanMethod:name=taxService,declaringClass=com.blogspot.toomuchcoding.book.chapter9.InjectingWithSpringComponentScan.MockTaxConfiguration]: a definition for bean 'taxService' already exists. This top-level bean definition is considered as an override.
